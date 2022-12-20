@@ -41,10 +41,10 @@ class MainPage(BasePage):
         self.driver.maximize_window()
         self.print_current_url()
         self.click_menu_catalog()
-        time.sleep(3)
+        # time.sleep(3)
         self.hover_sub_menu_computers()
-        time.sleep(3)
+        # time.sleep(3)
         self.click_item_usb_flash()
-        time.sleep(3)
+        # time.sleep(3)
         self.assert_url('https://www.onlinetrade.ru/catalogue/flesh_diski_usb-c158/')
 

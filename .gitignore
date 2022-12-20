@@ -131,3 +131,5 @@ dmypy.json
 .vscode/
 .idea/
 test_results/
+screenshots/
+exp.py
