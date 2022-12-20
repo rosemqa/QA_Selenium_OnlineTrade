@@ -4,9 +4,8 @@ from selenium.common import NoSuchElementException
 
 
 class BasePage:
-    def __init__(self, driver, timeout=5):
+    def __init__(self, driver):
         self.driver = driver
-        self.driver.implicitly_wait(timeout)
 
     def print_current_url(self):
         current_url = self.driver.current_url
@@ -22,6 +21,7 @@ class BasePage:
         screenshot_name = f'screenshot{now_date}.png'
         self.driver.save_screenshot('screenshots\\' + screenshot_name)
 
+    # Метод для проверки наличия элемента на странице
     def is_element_present(self, getter):
         try:
             getter

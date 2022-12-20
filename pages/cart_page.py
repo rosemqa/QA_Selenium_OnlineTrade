@@ -20,28 +20,28 @@ class CartPage(BasePage):
 
     # GETTERS
     def get_continue_as_a_guest(self):
-        return self.driver.find_element(By.XPATH, self.continue_as_a_guest)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.continue_as_a_guest)))
 
     def get_check_box_all_products(self):
-        return self.driver.find_element(By.XPATH, self.check_box_all_products)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.check_box_all_products)))
 
     def get_pickup_points_list(self):
-        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.pickup_points_list)))  # self.driver.find_element(By.XPATH, self.pickup_points_list)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.pickup_points_list)))
 
     def get_pickup_point_3(self):
-        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.pickup_point_3))) # element_to_be_clickable((By.XPATH, self.pickup_point_3))) # self.driver.find_element(By.XPATH, self.pickup_point_3)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.pickup_point_3)))
 
     def get_payment_method_cash(self):
-        return self.driver.find_element(By.XPATH, self.payment_method_cash)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.payment_method_cash)))
 
     def get_place_order(self):
-        return self.driver.find_element(By.XPATH, self.place_order)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.place_order)))
 
     def get_product_1_name(self):
-        return self.driver.find_element(By.XPATH, self.product_1_name)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_1_name)))
 
     def get_product_1_price(self):
-        return self.driver.find_element(By.XPATH, self.product_1_price)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_1_price)))
 
     # ACTIONS
     def click_continue_as_a_guest(self):
@@ -72,11 +72,11 @@ class CartPage(BasePage):
         assert self.is_element_present(self.get_continue_as_a_guest()), 'Continue as a guest link is missing'
 
     # METHODS
-    def select_product(self):
+    def buy_product(self):
         # self.driver.get(self.url)
         # self.driver.maximize_window()
         self.print_current_url()
-        self.should_be_continue_as_a_guest_link()
+        # self.should_be_continue_as_a_guest_link()
         self.click_continue_as_a_guest()
         # time.sleep(3)
         self.get_screenshot()

@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 
 
@@ -14,13 +16,13 @@ class MainPage(BasePage):
 
     # GETTERS
     def get_menu_catalog(self):
-        return self.driver.find_element(By.XPATH, self.menu_catalog)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.menu_catalog)))
 
     def get_sub_menu_computers(self):
-        return self.driver.find_element(By.XPATH, self.sub_menu_computers)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.sub_menu_computers)))
 
     def get_item_usb_flash(self):
-        return self.driver.find_element(By.XPATH, self.item_usb_flash)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.item_usb_flash)))
 
     # ACTIONS
     def click_menu_catalog(self):

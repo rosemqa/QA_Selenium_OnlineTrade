@@ -12,11 +12,13 @@ def test_buy_product(driver):
     product_info_plp = plp.select_product()
 
     cart_page = CartPage(driver)
-    product_info_cart = cart_page.select_product()
+    product_info_cart = cart_page.buy_product()
 
     print(product_info_plp, product_info_cart)
     assert product_info_plp[0] == product_info_cart[0], 'Product name in PLP and in the cart is different'
     assert product_info_plp[1] == product_info_cart[1], 'Product price in PLP and in the cart is different'
 
     pop = PlaceOrder(driver)
-    pop.place_order()
+    sum_order = pop.place_order()
+
+    assert sum_order == product_info_plp[1], 'Product price in PLP and in the order is different'

@@ -2,6 +2,8 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from .base_page import BasePage
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class PlaceOrder(BasePage):
@@ -13,25 +15,29 @@ class PlaceOrder(BasePage):
     sms_time_dropdown = '//*[@id="sms_time__ID"]'
     email = '//*[@id="email__ID"]'
     submit_order = '//*[@id="order_step2_submit"]'
+    product_cost = '(//span[@class="semibold"])[1]'
 
     # GETTERS
     def get_delivery_date_dropdown(self):
-        return self.driver.find_element(By.XPATH, self.delivery_date_dropdown)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.delivery_date_dropdown)))
 
     def get_contact_name(self):
-        return self.driver.find_element(By.XPATH, self.contact_name)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.contact_name)))
 
     def get_phone_number(self):
-        return self.driver.find_element(By.XPATH, self.phone_number)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.phone_number)))
 
     def get_sms_time_dropdown(self):
-        return self.driver.find_element(By.XPATH, self.sms_time_dropdown)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.sms_time_dropdown)))
 
     def get_email(self):
-        return self.driver.find_element(By.XPATH, self.email)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.email)))
 
     def get_submit_order(self):
-        return self.driver.find_element(By.XPATH, self.submit_order)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.submit_order)))
+
+    def get_product_cost(self):
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_cost)))
 
     # ACTIONS
     def select_delivery_date(self):
@@ -71,4 +77,9 @@ class PlaceOrder(BasePage):
         self.select_sms_time()
         # time.sleep(3)
         self.enter_email()
+        self.get_screenshot()
+        self.is_element_present(self.get_submit_order)
+        sum_order = self.get_product_cost().text
         time.sleep(3)
+        # print(sum_order)
+        return sum_order

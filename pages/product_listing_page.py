@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 
 
@@ -25,46 +27,46 @@ class PLP(BasePage):
 
     # GETTERS
     def get_filter_in_stock(self):
-        return self.driver.find_element(By.XPATH, self.filter_in_stock)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_in_stock)))
 
     def get_filter_producer(self):
-        return self.driver.find_element(By.XPATH, self.filter_producer)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_producer)))
 
     def get_filter_price(self):
-        return self.driver.find_element(By.XPATH, self.filter_price)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_price)))
 
     def get_filter_price_from(self):
-        return self.driver.find_element(By.XPATH, self.filter_price_from)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_price_from)))
 
     def get_filter_price_to(self):
-        return self.driver.find_element(By.XPATH, self.filter_price_to)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_price_to)))
 
     def get_filter_size_1(self):
-        return self.driver.find_element(By.XPATH, self.filter_size_1)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_size_1)))
 
     def get_filter_size_2(self):
-        return self.driver.find_element(By.XPATH, self.filter_size_2)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.filter_size_2)))
 
     def get_apply_filters(self):
-        return self.driver.find_element(By.XPATH, self.apply_filters)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.apply_filters)))
 
     def get_sort_list(self):
-        return self.driver.find_element(By.XPATH, self.sort_list)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.sort_list)))
 
     def get_buy_button_1(self):
-        return self.driver.find_element(By.XPATH, self.buy_button_1)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.buy_button_1)))
 
     def get_popup_buy(self):
-        return self.driver.find_element(By.XPATH, self.popup_buy)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.popup_buy)))
 
     def get_checkout_button_in_popup(self):
-        return self.driver.find_element(By.XPATH, self.checkout_button_in_popup)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.checkout_button_in_popup)))
 
     def get_product_1_name(self):
-        return self.driver.find_element(By.XPATH, self.product_1_name)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_1_name)))
 
     def get_product_1_price(self):
-        return self.driver.find_element(By.XPATH, self.product_1_price)
+        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_1_price)))
 
     # ACTIONS
     def select_filter_in_stock(self):
@@ -138,17 +140,17 @@ class PLP(BasePage):
         # time.sleep(3)
         self.select_filter_size_1()
         self.select_filter_size_2()
-        # time.sleep(3)
+        time.sleep(3)
         self.click_apply_filters()
         # time.sleep(3)
         self.sort_by_price_asc()
-        time.sleep(3)
+        # time.sleep(3)
         product_name_plp = self.get_product_1_name().text
         product_price_plp = self.get_product_1_price().text
         self.click_buy_button_1()
         # time.sleep(3)
         self.click_checkout_button_in_popup()
-        #time.sleep(3)
-        #assert 'https://www.onlinetrade.ru/basket.html?basket_hash=' in self.driver.current_url
+        # time.sleep(3)
+        # assert 'https://www.onlinetrade.ru/basket.html?basket_hash=' in self.driver.current_url
         # print(product_name_plp, product_price_plp)
         return product_name_plp, product_price_plp
