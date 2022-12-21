@@ -1,6 +1,9 @@
 import datetime
 import time
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
@@ -22,9 +25,9 @@ class BasePage:
         self.driver.save_screenshot('screenshots\\' + screenshot_name)
 
     # Метод для проверки наличия элемента на странице
-    def is_element_present(self, getter):
+    def is_element_present(self, locator):
         try:
-            getter
-        except NoSuchElementException:
+            WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, locator)))
+        except TimeoutException:
             return False
         return True

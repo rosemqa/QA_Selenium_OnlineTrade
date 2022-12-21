@@ -64,6 +64,9 @@ class PlaceOrder(BasePage):
         self.get_submit_order().click()
         print('Click submit order')
 
+    def should_be_submit_order_button(self):
+        assert self.is_element_present(self.submit_order), 'Submit order button is missing'
+
     # METHODS
     def place_order(self):
         self.print_current_url()
@@ -78,7 +81,7 @@ class PlaceOrder(BasePage):
         # time.sleep(3)
         self.enter_email()
         self.get_screenshot()
-        self.is_element_present(self.get_submit_order)
+        self.should_be_submit_order_button()
         sum_order = self.get_product_cost().text
         time.sleep(3)
         # print(sum_order)

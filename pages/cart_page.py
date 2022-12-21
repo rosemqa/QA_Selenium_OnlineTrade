@@ -69,7 +69,7 @@ class CartPage(BasePage):
         print('Click place order')
 
     def should_be_continue_as_a_guest_link(self):
-        assert self.is_element_present(self.get_continue_as_a_guest()), 'Continue as a guest link is missing'
+        assert self.is_element_present(self.continue_as_a_guest), 'Continue as a guest link is missing'
 
     # METHODS
     def buy_product(self):
