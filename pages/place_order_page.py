@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+
+from utilities.logger import Logger
 from .base_page import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -69,6 +71,7 @@ class PlaceOrder(BasePage):
 
     # METHODS
     def place_order(self):
+        Logger.add_start_step(method='place_order')
         self.print_current_url()
         # time.sleep(3)
         self.select_delivery_date()
@@ -85,4 +88,5 @@ class PlaceOrder(BasePage):
         sum_order = self.get_product_cost().text
         time.sleep(3)
         # print(sum_order)
+        Logger.add_end_step(self.driver.current_url, 'place_order')
         return sum_order

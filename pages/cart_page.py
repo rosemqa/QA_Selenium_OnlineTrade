@@ -2,6 +2,8 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from utilities.logger import Logger
 from .base_page import BasePage
 
 
@@ -73,6 +75,7 @@ class CartPage(BasePage):
 
     # METHODS
     def buy_product(self):
+        Logger.add_start_step('buy_product')
         # self.driver.get(self.url)
         # self.driver.maximize_window()
         self.print_current_url()
@@ -93,4 +96,5 @@ class CartPage(BasePage):
         self.click_place_order()
         # time.sleep(3)
         # print(product_name_cart, product_price_cart)
+        Logger.add_end_step(self.driver.current_url, 'buy_product')
         return product_name_cart, product_price_cart

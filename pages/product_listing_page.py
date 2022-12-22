@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from utilities.logger import Logger
 from .base_page import BasePage
 
 
@@ -123,6 +125,7 @@ class PLP(BasePage):
 
     # METHODS
     def select_product(self):
+        Logger.add_start_step(method='select_product')
         # self.driver.get(self.url)
         # self.driver.maximize_window()
         self.print_current_url()
@@ -153,4 +156,5 @@ class PLP(BasePage):
         # time.sleep(3)
         # assert 'https://www.onlinetrade.ru/basket.html?basket_hash=' in self.driver.current_url
         # print(product_name_plp, product_price_plp)
+        Logger.add_end_step(url=self.driver.current_url, method='select_product')
         return product_name_plp, product_price_plp
