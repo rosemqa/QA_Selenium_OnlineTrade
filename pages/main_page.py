@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import allure
 from utilities.logger import Logger
 from .base_page import BasePage
 
@@ -41,16 +41,16 @@ class MainPage(BasePage):
 
     # METHODS
     def open_plp_usb_flash(self):
-        Logger.add_start_step('open_plp_usb_flash')
-        self.driver.get(self.url)
-        self.driver.maximize_window()
-        self.print_current_url()
-        self.click_menu_catalog()
-        # time.sleep(3)
-        self.hover_sub_menu_computers()
-        # time.sleep(3)
-        self.click_item_usb_flash()
-        # time.sleep(3)
-        self.assert_url('https://www.onlinetrade.ru/catalogue/flesh_diski_usb-c158/')
-        Logger.add_end_step(self.driver.current_url, 'open_plp_usb_flash')
-
+        with allure.step('Open plp usb flash'):
+            Logger.add_start_step('open_plp_usb_flash')
+            self.driver.get(self.url)
+            self.driver.maximize_window()
+            self.print_current_url()
+            self.click_menu_catalog()
+            # time.sleep(3)
+            self.hover_sub_menu_computers()
+            # time.sleep(3)
+            self.click_item_usb_flash()
+            # time.sleep(3)
+            self.assert_url('https://www.onlinetrade.ru/catalogue/flesh_diski_usb-c158/')
+            Logger.add_end_step(self.driver.current_url, 'open_plp_usb_flash')

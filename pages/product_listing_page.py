@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import allure
 from utilities.logger import Logger
 from .base_page import BasePage
 
@@ -125,36 +125,37 @@ class PLP(BasePage):
 
     # METHODS
     def select_product(self):
-        Logger.add_start_step(method='select_product')
-        # self.driver.get(self.url)
-        # self.driver.maximize_window()
-        self.print_current_url()
-        self.select_filter_in_stock()
-        # time.sleep(3)
-        self.select_filter_producer()
-        # time.sleep(3)
-        self.open_filter_price()
-        # time.sleep(3)
-        self.clear_filter_price_from()
-        self.clear_filter_price_to()
-        # time.sleep(3)
-        self.enter_filter_price_from()
-        self.enter_filter_price_to()
-        # time.sleep(3)
-        self.select_filter_size_1()
-        self.select_filter_size_2()
-        time.sleep(3)
-        self.click_apply_filters()
-        # time.sleep(3)
-        self.sort_by_price_asc()
-        # time.sleep(3)
-        product_name_plp = self.get_product_1_name().text
-        product_price_plp = self.get_product_1_price().text
-        self.click_buy_button_1()
-        # time.sleep(3)
-        self.click_checkout_button_in_popup()
-        # time.sleep(3)
-        # assert 'https://www.onlinetrade.ru/basket.html?basket_hash=' in self.driver.current_url
-        # print(product_name_plp, product_price_plp)
-        Logger.add_end_step(url=self.driver.current_url, method='select_product')
-        return product_name_plp, product_price_plp
+        with allure.step('Select product on plp'):
+            Logger.add_start_step(method='select_product')
+            # self.driver.get(self.url)
+            # self.driver.maximize_window()
+            self.print_current_url()
+            self.select_filter_in_stock()
+            # time.sleep(3)
+            self.select_filter_producer()
+            # time.sleep(3)
+            self.open_filter_price()
+            # time.sleep(3)
+            self.clear_filter_price_from()
+            self.clear_filter_price_to()
+            # time.sleep(3)
+            self.enter_filter_price_from()
+            self.enter_filter_price_to()
+            # time.sleep(3)
+            self.select_filter_size_1()
+            self.select_filter_size_2()
+            time.sleep(3)
+            self.click_apply_filters()
+            # time.sleep(3)
+            self.sort_by_price_asc()
+            # time.sleep(3)
+            product_name_plp = self.get_product_1_name().text
+            product_price_plp = self.get_product_1_price().text
+            self.click_buy_button_1()
+            # time.sleep(3)
+            self.click_checkout_button_in_popup()
+            # time.sleep(3)
+            # assert 'https://www.onlinetrade.ru/basket.html?basket_hash=' in self.driver.current_url
+            # print(product_name_plp, product_price_plp)
+            Logger.add_end_step(url=self.driver.current_url, method='select_product')
+            return product_name_plp, product_price_plp

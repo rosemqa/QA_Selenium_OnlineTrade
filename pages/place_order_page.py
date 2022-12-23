@@ -1,7 +1,7 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
+import allure
 from utilities.logger import Logger
 from .base_page import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
@@ -71,22 +71,23 @@ class PlaceOrder(BasePage):
 
     # METHODS
     def place_order(self):
-        Logger.add_start_step(method='place_order')
-        self.print_current_url()
-        # time.sleep(3)
-        self.select_delivery_date()
-        # time.sleep(3)
-        self.enter_contact_name()
-        # time.sleep(3)
-        self.enter_phone_number()
-        # time.sleep(3)
-        self.select_sms_time()
-        # time.sleep(3)
-        self.enter_email()
-        self.get_screenshot()
-        self.should_be_submit_order_button()
-        sum_order = self.get_product_cost().text
-        time.sleep(3)
-        # print(sum_order)
-        Logger.add_end_step(self.driver.current_url, 'place_order')
-        return sum_order
+        with allure.step('Place order'):
+            Logger.add_start_step(method='place_order')
+            self.print_current_url()
+            # time.sleep(3)
+            self.select_delivery_date()
+            # time.sleep(3)
+            self.enter_contact_name()
+            # time.sleep(3)
+            self.enter_phone_number()
+            # time.sleep(3)
+            self.select_sms_time()
+            # time.sleep(3)
+            self.enter_email()
+            self.get_screenshot()
+            self.should_be_submit_order_button()
+            sum_order = self.get_product_cost().text
+            time.sleep(3)
+            # print(sum_order)
+            Logger.add_end_step(self.driver.current_url, 'place_order')
+            return sum_order
