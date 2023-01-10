@@ -31,3 +31,15 @@ class BasePage:
         except TimeoutException:
             return False
         return True
+
+    def is_not_element_present(self, locator, timeout=2):
+        try:
+            WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable((By.XPATH, locator)))
+        except TimeoutException:
+            return True
+        return False
+
+    def assert_text(self, element, expected_text):
+        text_value = element.text
+        assert text_value == expected_text, f'text - "{text_value}" is not correct'
+        print('Text value - OK')
