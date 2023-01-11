@@ -62,7 +62,8 @@ class PLP(BasePage):
         return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.popup_buy)))
 
     def get_checkout_button_in_popup(self):
-        return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.checkout_button_in_popup)))
+        return WebDriverWait(self.driver, 5)\
+            .until(EC.element_to_be_clickable((By.XPATH, self.checkout_button_in_popup)))
 
     def get_product_1_name(self):
         return WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.product_1_name)))
